@@ -34,7 +34,6 @@ END_MESSAGE_MAP()
 CMainWindow::CMainWindow()
 {
 	Create(NULL, _T("Ruler"), WS_OVERLAPPEDWINDOW | WS_HSCROLL);
-
 }
 
 void CMainWindow::OnHScroll(UINT nCode, UINT nPos, CScrollBar* pScrollBar)
@@ -52,7 +51,7 @@ void CMainWindow::OnSize(UINT nType, int cx, int cy)
 	si.fMask = SIF_ALL;
 	si.nMin = 0;
 	si.nMax = m_VISUAL_SPACE_DE.x;
-	si.nPage = cx;
+	si.nPage = 1844;
 	si.nPos = 0;
 	//SetScrollInfo(SB_VERT, &si, TRUE);
 	SetScrollInfo(SB_HORZ, &si, TRUE);
