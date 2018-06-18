@@ -28,11 +28,17 @@ const CPoint VISUAL_SPACE_LO(static_cast<int>((MARGIN_X * 2 + RULER_WIDTH)*INCH_
 BEGIN_MESSAGE_MAP(CMainWindow, CFrameWnd)
 	ON_WM_SIZE()
 	ON_WM_PAINT()
+	ON_WM_HSCROLL()
 END_MESSAGE_MAP()
 
 CMainWindow::CMainWindow()
 {
 	Create(NULL, _T("Ruler"), WS_OVERLAPPEDWINDOW | WS_HSCROLL);
+
+}
+
+void CMainWindow::OnHScroll(UINT nCode, UINT nPos, CScrollBar* pScrollBar)
+{
 
 }
 
