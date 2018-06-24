@@ -140,7 +140,10 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ChildView.cpp" />
+    <ClCompile Include="ChildView.cpp">
+      <PreprocessToFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</PreprocessToFile>
+      <PreprocessKeepComments Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</PreprocessKeepComments>
+    </ClCompile>
     <ClCompile Include="Colors.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="StdAfx.cpp">
@@ -167,4 +170,9 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties RESOURCE_FILE="Colors.rc" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
