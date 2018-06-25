@@ -260,12 +260,15 @@ void CMainWindow::OnVScroll(UINT nCode, UINT nPos, CScrollBar* pScrollBar)
 		newPos = nMaxPos;
 
 	int nDelta = newPos - m_nVScrollPos;
+	CRect clientRect;
+	GetClientRect(clientRect);
+	clientRect.top = m_nCellHeight;
 	//
 	// Update the scroll position and scroll the window.
 	//
 	if (nDelta != 0) {
 		m_nVScrollPos = newPos;
 		SetScrollPos(SB_VERT, m_nVScrollPos, TRUE);
-		ScrollWindow(0, -nDelta);
+		ScrollWindow(0, -nDelta, NULL, &clientRect);
 	}
 }

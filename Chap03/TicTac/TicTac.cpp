@@ -45,8 +45,8 @@ CMainWindow::CMainWindow ()
 	// Register a WNDCLASS.
 	//
     CString strWndClass = AfxRegisterWndClass (
-        CS_DBLCLKS,										// Class style
-        AfxGetApp ()->LoadStandardCursor (IDC_ARROW),   // Class cursor
+        CS_DBLCLKS|CS_HREDRAW|CS_VREDRAW,										// Class style
+        AfxGetApp ()->LoadStandardCursor (IDC_CROSS),   // Class cursor
         (HBRUSH) (COLOR_3DFACE + 1),					// Background brush
         AfxGetApp ()->LoadStandardIcon (IDI_WINLOGO)	// Class icon
     );
@@ -55,7 +55,7 @@ CMainWindow::CMainWindow ()
 	// Create a window.
 	//
     CreateEx (0, strWndClass, _T ("Tic-Tac-Toe"),
-        WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZEBOX,
+		WS_OVERLAPPED | WS_SYSMENU | WS_CAPTION | WS_MINIMIZE | WS_THICKFRAME|WS_MAXIMIZE,
         CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
         NULL, NULL);
 
