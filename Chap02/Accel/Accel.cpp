@@ -6,7 +6,7 @@ CMyApp myApp;
 /////////////////////////////////////////////////////////////////////////
 // CMyApp member functions
 
-BOOL CMyApp::InitInstance ()
+BOOL CMyApp::InitInstance()
 {
 	m_pMainWnd = new CMainWindow;
 	m_pMainWnd->ShowWindow(m_nCmdShow);
@@ -27,8 +27,8 @@ END_MESSAGE_MAP()
 
 CMainWindow::CMainWindow() :m_nHScrollPos(0), m_nVScrollPos(0)
 {
-	Create(NULL, _T("Accel"),
-		WS_OVERLAPPEDWINDOW | WS_HSCROLL | WS_VSCROLL);
+	Create(NULL, _T("Accel"), WS_OVERLAPPEDWINDOW | WS_HSCROLL | WS_VSCROLL);
+	//int count = ::GetSystemMetrics(SM_CMOUSEBUTTONS);
 }
 
 int CMainWindow::OnCreate(LPCREATESTRUCT lpCreateStruct)
