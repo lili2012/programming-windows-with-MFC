@@ -103,22 +103,22 @@ void CMainFrame::OnMeasureItem (int nIDCtl, LPMEASUREITEMSTRUCT lpmis)
 
 void CMainFrame::OnDrawItem (int nIDCtl, LPDRAWITEMSTRUCT lpdis)
 {
-    BITMAP bm;
+    BITMAP bm;//记录bitmap的尺寸
     CBitmap bitmap;
     bitmap.LoadOEMBitmap (OBM_CHECK);
-    bitmap.GetObject (sizeof (bm), &bm);
+    bitmap.GetObject (sizeof (bm), &bm);//获得bitmap的尺寸
 
     CDC dc;
     dc.Attach (lpdis->hDC);
 
-    CBrush* pBrush = new CBrush (::GetSysColor ((lpdis->itemState &
+    CBrush brush = CBrush (::GetSysColor ((lpdis->itemState &
         ODS_SELECTED) ? COLOR_HIGHLIGHT : COLOR_MENU));
-    dc.FrameRect (&(lpdis->rcItem), pBrush);
-    delete pBrush;
+	dc.FrameRect(&(lpdis->rcItem), &brush);
+ 
 
     if (lpdis->itemState & ODS_CHECKED) {
         CDC dcMem;
-        dcMem.CreateCompatibleDC (&dc);
+        dcMem.CreateCompatibleDC (&dc);//create a memory dc
         CBitmap* pOldBitmap = dcMem.SelectObject (&bitmap);
 
         dc.BitBlt (lpdis->rcItem.left + 4, lpdis->rcItem.top +
@@ -129,13 +129,12 @@ void CMainFrame::OnDrawItem (int nIDCtl, LPDRAWITEMSTRUCT lpdis)
         dcMem.SelectObject (pOldBitmap);
     }
 
-	UINT itemID = lpdis->itemID & 0xFFFF; // Fix for Win95/98 bug
-    pBrush = new CBrush (m_wndView.m_clrColors[itemID - ID_COLOR_RED]);
+	UINT itemID = lpdis->itemID;
+	CBrush brush2 = CBrush(m_wndView.m_clrColors[itemID - ID_COLOR_RED]);
     CRect rect = lpdis->rcItem;
     rect.DeflateRect (6, 4);
     rect.left += bm.bmWidth;
-    dc.FillRect (rect, pBrush);
-    delete pBrush;
+	dc.FillRect(rect, &brush2);
 
     dc.Detach ();
 }

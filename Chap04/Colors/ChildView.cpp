@@ -48,9 +48,9 @@ const AFX_MSGMAP* CChildView::GetMessageMap() const
 }
 
 const AFX_MSGMAP* __stdcall CChildView::GetThisMessageMap() {
-	typedef CChildView ThisClass; 
-	typedef CWnd TheBaseClass; 
-	static const AFX_MSGMAP_ENTRY _messageEntries[] = 
+	typedef CChildView ThisClass;
+	typedef CWnd TheBaseClass;
+	static const AFX_MSGMAP_ENTRY _messageEntries[] =
 	{
 		//{{AFX_MSG_MAP(CChildView)
 		{ 0x000F, 0, 0, 0, AfxSig_vv, (AFX_PMSG)(AFX_PMSGW)(static_cast<void (CWnd::*)(void)> (&ThisClass::OnPaint)) },
@@ -66,9 +66,9 @@ const AFX_MSGMAP* __stdcall CChildView::GetThisMessageMap() {
 		{ 0x0111, 0, (WORD)32774, (WORD)32778, AfxSigCmd_RANGE, (AFX_PMSG)(static_cast<void (CCmdTarget::*)(UINT)> (OnColor)) },
 		//end comand_range
 		{ 0x0111, ((UINT)(-1)), (WORD)32774, (WORD)32778, AfxSigCmdUI, (AFX_PMSG)(static_cast<void (CCmdTarget::*)(CCmdUI*)> (OnUpdateColor)) },
-		{ 0, 0, 0, 0, AfxSig_end, (AFX_PMSG)0 } 
-	}; 
-	static const AFX_MSGMAP messageMap = { &TheBaseClass::GetThisMessageMap, &_messageEntries[0] }; 
+		{ 0, 0, 0, 0, AfxSig_end, (AFX_PMSG)0 }
+	};
+	static const AFX_MSGMAP messageMap = { &TheBaseClass::GetThisMessageMap, &_messageEntries[0] };
 	return &messageMap;
 } __pragma(warning(pop))
 
@@ -176,10 +176,6 @@ void CChildView::OnColor(UINT nID)
 void CChildView::OnUpdateColor(CCmdUI* pCmdUI)
 {
 	pCmdUI->SetCheck((int)pCmdUI->m_nID - ID_COLOR_RED == m_nColor);
-	static int i = 0;
-	i++;
-	if (i>10)
-		pCmdUI->SetCheck(TRUE); 
 }
 
 void CChildView::OnContextMenu(CWnd* pWnd, CPoint point)
@@ -233,8 +229,7 @@ void CChildView::OnContextMenu(CWnd* pWnd, CPoint point)
 		CMenu* pContextMenu = menu.GetSubMenu(0);
 
 		for (int i = 0; i < 5; i++)
-			pContextMenu->ModifyMenu(ID_COLOR_RED + i,
-			MF_BYCOMMAND | MF_OWNERDRAW, ID_COLOR_RED + i);
+			pContextMenu->ModifyMenu(ID_COLOR_RED + i, MF_BYCOMMAND | MF_OWNERDRAW, ID_COLOR_RED + i);
 
 		pContextMenu->TrackPopupMenu(TPM_LEFTALIGN | TPM_LEFTBUTTON |
 			TPM_RIGHTBUTTON, point.x, point.y, AfxGetMainWnd());
