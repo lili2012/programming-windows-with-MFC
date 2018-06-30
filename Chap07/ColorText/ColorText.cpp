@@ -103,10 +103,29 @@ void CMainWindow::OnBlueButtonClicked ()
 
 /////////////////////////////////////////////////////////////////////////
 // CColorStatic message map and member functions
-
+/*
 BEGIN_MESSAGE_MAP (CColorStatic, CStatic)
     ON_WM_CTLCOLOR_REFLECT ()
 END_MESSAGE_MAP ()
+*/
+__pragma(warning(push)) 
+__pragma(warning(disable : 4867)) 
+const AFX_MSGMAP* CColorStatic::GetMessageMap() const 
+{ 
+	return GetThisMessageMap(); 
+} 
+const AFX_MSGMAP* __stdcall CColorStatic::GetThisMessageMap() {
+	typedef CColorStatic ThisClass; 
+	typedef CStatic TheBaseClass; 
+	static const AFX_MSGMAP_ENTRY _messageEntries[] = 
+	{
+		{ 0x0019 + 0xBC00, 0, 0, 0, AfxSig_hDw, (AFX_PMSG)(AFX_PMSGW)(static_cast<HBRUSH(CWnd::*)(CDC*, UINT)> (&ThisClass::CtlColor)) },
+		{ 0, 0, 0, 0, AfxSig_end, (AFX_PMSG)0 } 
+	}; 
+	static const AFX_MSGMAP messageMap = { &TheBaseClass::GetThisMessageMap, &_messageEntries[0] }; 
+	return &messageMap;
+} 
+__pragma(warning(pop))
 
 CColorStatic::CColorStatic ()
 {

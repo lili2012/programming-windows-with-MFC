@@ -111,7 +111,7 @@ void CMainWindow::OnDropFiles (HDROP hDropInfo)
     int nCount = ::DragQueryFile (hDropInfo, (UINT) -1, NULL, 0);
 
     if (nCount == 1) { // One file at a time, please
-        m_wndIconListBox.ResetContent ();
+        //m_wndIconListBox.ResetContent ();
 		//
 		// Extract the file's icons and add them to the list box.
 		//
@@ -122,8 +122,7 @@ void CMainWindow::OnDropFiles (HDROP hDropInfo)
         if (nIcons) {
             HICON hIcon;
             for (int i=0; i<nIcons; i++) {
-                hIcon = ::ExtractIcon (AfxGetInstanceHandle (),
-                    szFile, i);
+                hIcon = ::ExtractIcon (AfxGetInstanceHandle (),szFile, i);
                 m_wndIconListBox.AddIcon (hIcon);
             }
         }
@@ -149,8 +148,7 @@ void CMainWindow::OnDropFiles (HDROP hDropInfo)
 void CMainWindow::OnSelChange ()
 {
     CClientDC dc (this);
-    m_wndIconListBox.ProjectImage (&dc, m_rcImage,
-        ::GetSysColor (COLOR_3DFACE));
+    m_wndIconListBox.ProjectImage (&dc, m_rcImage,::GetSysColor (COLOR_3DFACE));
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -163,7 +161,7 @@ BOOL CIconListBox::PreCreateWindow (CREATESTRUCT& cs)
 
     cs.dwExStyle |= WS_EX_CLIENTEDGE;
     cs.style &= ~(LBS_OWNERDRAWVARIABLE | LBS_SORT);
-    cs.style |= LBS_OWNERDRAWFIXED;
+	cs.style |= (LBS_OWNERDRAWFIXED | LBS_HASSTRINGS);
     return TRUE;
 }
 
