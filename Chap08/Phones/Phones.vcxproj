@@ -296,6 +296,7 @@
     <ClInclude Include="StdAfx.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\Cancel.ico" />
     <Image Include="res\check.ico" />
     <Image Include="res\icon1.ico" />
     <Image Include="res\Ok.ico" />
