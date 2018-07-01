@@ -70,7 +70,8 @@ END_MESSAGE_MAP()
 BOOL CDlgCalcDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
+	CRect rect;
+	GetWindowRect(&rect);
 	//
 	// Set the application's icon.
 	//
