@@ -84,7 +84,7 @@ void CChildView::OnFileOptions()
 	//
 	// If the dialog box already exists, display it.
 	//
-	if (m_pDlg != NULL)
+	if (m_pDlg)
 		m_pDlg->SetFocus ();
 
 	//
