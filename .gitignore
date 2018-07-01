@@ -17,3 +17,6 @@ Chap01/Hello/Hello.v12.suo
 *.aps
 *.aps
 *.aps
+*.exe
+*.ilk
+*.user

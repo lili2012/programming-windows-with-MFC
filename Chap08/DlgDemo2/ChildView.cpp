@@ -91,7 +91,7 @@ void CChildView::OnFileOptions()
 	// If the dialog box doesn't already exist, create it.
 	//
 	else {
-		m_pDlg = new COptionsDialog;
+		m_pDlg = new COptionsDialog(this);
 		m_pDlg->m_nWidth = m_nWidth;
 		m_pDlg->m_nHeight = m_nHeight;
 		m_pDlg->m_nUnits = m_nUnits;
@@ -102,10 +102,10 @@ void CChildView::OnFileOptions()
 
 LRESULT CChildView::OnApply (WPARAM wParam, LPARAM lParam)
 {
-    RECTPROP* prp = (RECTPROP*) lParam;
-    m_nWidth = prp->nWidth;
-    m_nHeight = prp->nHeight;
-    m_nUnits = prp->nUnits;
+ 
+	m_nWidth = m_pDlg->m_nWidth;
+	m_nHeight = m_pDlg->m_nHeight;
+	m_nUnits = m_pDlg->m_nUnits;
     Invalidate ();
     return 0;
 }

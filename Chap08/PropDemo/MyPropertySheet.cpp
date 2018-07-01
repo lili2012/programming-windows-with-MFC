@@ -48,13 +48,7 @@ void CMyPropertySheet::OnApply ()
 {
     GetActivePage ()->UpdateData (TRUE);
 
-	ELLPROP ep;
-	ep.nWidth = m_sizePage.m_nWidth;
-	ep.nHeight = m_sizePage.m_nHeight;
-	ep.nUnits = m_sizePage.m_nUnits;
-	ep.nColor = m_colorPage.m_nColor;
-
-    GetParent ()->SendMessage (WM_USER_APPLY, 0, (LPARAM) &ep);
+    m_pParentWnd->SendMessage (WM_USER_APPLY, 0, (LPARAM) this);
 
     m_sizePage.SetModified (FALSE);
     m_colorPage.SetModified (FALSE);

@@ -147,10 +147,10 @@ BOOL CDlgCalcDlg::OnCommand(WPARAM wParam, LPARAM lParam)
 
 void CDlgCalcDlg::OnDigit(UINT nID) 
 {
-    TCHAR cDigit = (char) nID;
+	TCHAR cDigit = (TCHAR)(nID - IDC_0 + 0x30);
 
     if (m_bFixPending) {
-        m_strFormat.SetAt (3, cDigit - IDC_0 + 0x30);
+		m_strFormat.SetAt(3, cDigit);
         DisplayXRegister ();
         m_bFixPending = FALSE;
         m_bStackLiftEnabled = TRUE;
@@ -173,7 +173,7 @@ void CDlgCalcDlg::OnDigit(UINT nID)
         ((nLength == (MAXCHARS - 10)) && !m_bDecimalInString))
         ::MessageBeep (MB_ICONASTERISK);
     else {
-        m_strDisplay += (TCHAR)(cDigit - IDC_0 + 0x30);
+		m_strDisplay += cDigit;
         UpdateDisplay (m_strDisplay);
         m_dblStack[0] = _tcstod (m_strDisplay.GetBuffer (0), NULL);
     }

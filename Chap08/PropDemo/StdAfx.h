@@ -19,13 +19,6 @@
 #include <afxcmn.h>			// MFC support for Windows Common Controls
 #endif // _AFX_NO_AFXCMN_SUPPORT
 
-typedef struct tagELLPROP {
-    int nWidth;
-	int nHeight;
-	int nUnits;
-	int nColor;
-} ELLPROP;
-
 #define WM_USER_APPLY WM_USER+0x100
 
 //{{AFX_INSERT_LOCATION}}

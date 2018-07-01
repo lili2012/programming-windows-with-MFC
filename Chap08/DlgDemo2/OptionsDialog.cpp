@@ -55,12 +55,8 @@ void COptionsDialog::OnOK ()
 {
 	UpdateData (TRUE);
 
-	RECTPROP rp;
-	rp.nWidth = m_nWidth;
-	rp.nHeight = m_nHeight;
-	rp.nUnits = m_nUnits;
- 
-	AfxGetMainWnd ()->SendMessage (WM_USER_APPLY, 0, (LPARAM) &rp);
+
+	m_pParentWnd->SendMessage(WM_USER_APPLY, 0, NULL);
 }
 
 void COptionsDialog::OnCancel ()
@@ -71,6 +67,6 @@ void COptionsDialog::OnCancel ()
 void COptionsDialog::PostNcDestroy () 
 {
 	CDialog::PostNcDestroy ();
-    AfxGetMainWnd ()->SendMessage (WM_USER_DIALOG_DESTROYED, 0, 0);
+	m_pParentWnd->SendMessage(WM_USER_DIALOG_DESTROYED, 0, 0);
     delete this;
 }

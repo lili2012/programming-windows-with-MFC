@@ -80,7 +80,7 @@ void CChildView::OnPaint()
 
 void CChildView::OnFileProperties() 
 {
-	CMyPropertySheet ps (_T ("Properties"));
+	CMyPropertySheet ps (_T ("Properties"),this);
 	ps.m_sizePage.m_nWidth = m_nWidth;
 	ps.m_sizePage.m_nHeight = m_nHeight;
 	ps.m_sizePage.m_nUnits = m_nUnits;
@@ -97,11 +97,11 @@ void CChildView::OnFileProperties()
 
 LRESULT CChildView::OnApply (WPARAM wParam, LPARAM lParam)
 {
-	ELLPROP* pep = (ELLPROP*) lParam;
-	m_nWidth = pep->nWidth;
-	m_nHeight = pep->nHeight;
-	m_nUnits = pep->nUnits;
-	m_nColor = pep->nColor;
+	CMyPropertySheet* pep = (CMyPropertySheet*)lParam;
+	m_nWidth = pep->m_sizePage.m_nWidth;
+	m_nHeight = pep->m_sizePage.m_nHeight;
+	m_nUnits = pep->m_sizePage.m_nUnits;
+	m_nColor = pep->m_colorPage.m_nColor;
 	Invalidate ();
 	return 0;
 }
