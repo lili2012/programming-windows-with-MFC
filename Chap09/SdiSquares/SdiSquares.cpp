@@ -63,11 +63,19 @@ BOOL CSquaresApp::InitInstance()
 	//  serve as the connection between documents, frame windows and views.
 
 	CSingleDocTemplate* pDocTemplate;
+	/*
 	pDocTemplate = new CSingleDocTemplate(
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CSquaresDoc),
 		RUNTIME_CLASS(CMainFrame),       // main SDI frame window
 		RUNTIME_CLASS(CSquaresView));
+		*/
+	pDocTemplate = new CSingleDocTemplate(
+		IDR_MAINFRAME,
+		(CSquaresDoc::GetThisClass()),
+		(CMainFrame::GetThisClass()),
+		(CSquaresView::GetThisClass()));
+
 	AddDocTemplate(pDocTemplate);
 
 	// Enable DDE Execute open
