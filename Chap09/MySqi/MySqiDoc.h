@@ -45,4 +45,12 @@ protected:
 	// Helper function that sets search content for a Search Handler
 	void SetSearchContent(const CString& value);
 #endif // SHARED_HANDLERS
+	COLORREF m_clrCurrentColor;
+	COLORREF m_clrGrid[4][4];
+
+
+public:
+	COLORREF GetCurrentColor();
+	COLORREF GetSquare(int i, int j);
+	void SetSquare(int i, int j, COLORREF color);
 };

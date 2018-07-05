@@ -42,8 +42,11 @@ BOOL CMySqiDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	// TODO: add reinitialization code here
-	// (SDI documents will reuse this document)
+	for (int i = 0; i < 4; i++)
+		for (int j = 0; j < 4; j++)
+			m_clrGrid[i][j] = RGB(255, 255, 255);
+
+	m_clrCurrentColor = RGB(255, 0, 0);
 
 	return TRUE;
 }
@@ -57,11 +60,17 @@ void CMySqiDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: add storing code here
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 4; j++)
+				ar << m_clrGrid[i][j];
+		ar << m_clrCurrentColor;
 	}
 	else
 	{
-		// TODO: add loading code here
+		for (int i = 0; i < 4; i++)
+			for (int j = 0; j < 4; j++)
+				ar >> m_clrGrid[i][j];
+		ar >> m_clrCurrentColor;
 	}
 }
 
@@ -135,3 +144,23 @@ void CMySqiDoc::Dump(CDumpContext& dc) const
 
 
 // CMySqiDoc commands
+
+
+COLORREF CMySqiDoc::GetCurrentColor()
+{
+	return m_clrCurrentColor;
+}
+
+COLORREF CMySqiDoc::GetSquare(int i, int j)
+{
+	ASSERT(i >= 0 && i <= 3 && j >= 0 && j <= 3);
+	return m_clrGrid[i][j];
+}
+
+void CMySqiDoc::SetSquare(int i, int j, COLORREF color)
+{
+	ASSERT(i >= 0 && i <= 3 && j >= 0 && j <= 3);
+	m_clrGrid[i][j] = color;
+	SetModifiedFlag(TRUE);
+	UpdateAllViews(NULL);
+}
