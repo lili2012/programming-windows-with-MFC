@@ -55,7 +55,7 @@ void CHtmlClockView::OnInitialUpdate()
 	CHtmlView::OnInitialUpdate();
 
 	TCHAR szPath[MAX_PATH];
-	::GetModuleFileName (NULL, szPath, sizeof (szPath) / sizeof (TCHAR));
+	::GetModuleFileName(NULL, szPath, MAX_PATH);
 
 	CString string = szPath;
 	int nIndex = string.ReverseFind (_T ('\\'));
