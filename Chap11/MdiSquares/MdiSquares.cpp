@@ -17,17 +17,37 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMdiSquaresApp
-
+/*
 BEGIN_MESSAGE_MAP(CMdiSquaresApp, CWinApp)
-	//{{AFX_MSG_MAP(CMdiSquaresApp)
-	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG_MAP
-	// Standard file based document commands
-	ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
-	ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
+//{{AFX_MSG_MAP(CMdiSquaresApp)
+ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
+// NOTE - the ClassWizard will add and remove mapping macros here.
+//    DO NOT EDIT what you see in these blocks of generated code!
+//}}AFX_MSG_MAP
+// Standard file based document commands
+ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
+ON_COMMAND(ID_FILE_OPEN, CWinApp::OnFileOpen)
 END_MESSAGE_MAP()
+*/
+__pragma(warning(push))
+__pragma(warning(disable : 4867))
+const AFX_MSGMAP* CMdiSquaresApp::GetMessageMap() const
+{
+	return GetThisMessageMap();
+}
+const AFX_MSGMAP* __stdcall CMdiSquaresApp::GetThisMessageMap() {
+	typedef CMdiSquaresApp ThisClass; typedef CWinApp TheBaseClass; static const AFX_MSGMAP_ENTRY _messageEntries[] =
+	{
+		{ 0x0111, 0, (WORD)0xE140, (WORD)0xE140, AfxSigCmd_v, static_cast<AFX_PMSG> (OnAppAbout) },
+		{ 0x0111, 0, (WORD)0xE100, (WORD)0xE100, AfxSigCmd_v, static_cast<AFX_PMSG> (CWinApp::OnFileNew) },
+		{ 0x0111, 0, (WORD)0xE101, (WORD)0xE101, AfxSigCmd_v, static_cast<AFX_PMSG> (CWinApp::OnFileOpen) },
+		{ 0, 0, 0, 0, AfxSig_end, (AFX_PMSG)0 }
+	};
+	static const AFX_MSGMAP messageMap = { &TheBaseClass::GetThisMessageMap, &_messageEntries[0] };
+	return &messageMap;
+}
+__pragma(warning(pop))
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CMdiSquaresApp construction
@@ -95,21 +115,21 @@ class CAboutDlg : public CDialog
 public:
 	CAboutDlg();
 
-// Dialog Data
+	// Dialog Data
 	//{{AFX_DATA(CAboutDlg)
 	enum { IDD = IDD_ABOUTBOX };
 	//}}AFX_DATA
 
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
-// Implementation
+	// Implementation
 protected:
 	//{{AFX_MSG(CAboutDlg)
-		// No message handlers
+	// No message handlers
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
@@ -129,7 +149,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
 	//{{AFX_MSG_MAP(CAboutDlg)
-		// No message handlers
+	// No message handlers
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
