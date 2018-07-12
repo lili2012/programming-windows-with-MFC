@@ -29,7 +29,7 @@ public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
 	//}}AFX_VIRTUAL
-	virtual CRichEditCntrItem* CreateClientItem(REOBJECT* preo) const;
+	virtual CRichEditCntrItem* CreateClientItem(REOBJECT* preo) const override;
 
 // Implementation
 public:

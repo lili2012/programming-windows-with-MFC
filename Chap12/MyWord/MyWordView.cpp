@@ -57,15 +57,14 @@ BOOL CMyWordView::PreCreateWindow(CREATESTRUCT& cs)
 void CMyWordView::OnInitialUpdate()
 {
 	CRichEditView::OnInitialUpdate();
-
-    CHARFORMAT cf;
+	CHARFORMAT2 cf;
     cf.cbSize = sizeof (CHARFORMAT);
     cf.dwMask = CFM_BOLD | CFM_ITALIC | CFM_UNDERLINE |
         CFM_PROTECTED | CFM_STRIKEOUT | CFM_FACE | CFM_SIZE;
     cf.dwEffects = 0;
     cf.yHeight = 240; // 240 twips == 12 points
     ::lstrcpy (cf.szFaceName, _T ("Times New Roman"));
-    //SetCharFormat (cf);
+    SetCharFormat (cf);
 }
 
 void CMyWordView::OnDestroy()
@@ -107,7 +106,7 @@ CMyWordDoc* CMyWordView::GetDocument() // non-debug version is inline
 
 void CMyWordView::OnCharBold() 
 {
-    CHARFORMAT cf;
+	CHARFORMAT2 cf;
     cf = GetCharFormatSelection ();
 
     if (!(cf.dwMask & CFM_BOLD) || !(cf.dwEffects & CFE_BOLD))
@@ -116,12 +115,12 @@ void CMyWordView::OnCharBold()
         cf.dwEffects = 0;
 
     cf.dwMask = CFM_BOLD;
-    //SetCharFormat (cf);
+    SetCharFormat (cf);
 }
 
 void CMyWordView::OnCharItalic() 
 {
-    CHARFORMAT cf;
+	CHARFORMAT2 cf;
     cf = GetCharFormatSelection ();
 
     if (!(cf.dwMask & CFM_ITALIC) || !(cf.dwEffects & CFE_ITALIC))
@@ -130,12 +129,12 @@ void CMyWordView::OnCharItalic()
         cf.dwEffects = 0;
 
     cf.dwMask = CFM_ITALIC;
-    //SetCharFormat (cf);
+    SetCharFormat (cf);
 }
 
 void CMyWordView::OnCharUnderline() 
 {
-    CHARFORMAT cf;
+	CHARFORMAT2 cf;
     cf = GetCharFormatSelection ();
 
     if (!(cf.dwMask & CFM_UNDERLINE) || !(cf.dwEffects & CFE_UNDERLINE))
@@ -144,7 +143,7 @@ void CMyWordView::OnCharUnderline()
         cf.dwEffects = 0;
 
     cf.dwMask = CFM_UNDERLINE;
-    //SetCharFormat (cf);
+    SetCharFormat (cf);
 }
 
 void CMyWordView::OnParaLeft() 
@@ -204,25 +203,25 @@ void CMyWordView::OnUpdateLineNumber(CCmdUI* pCmdUI)
 
 void CMyWordView::ChangeFont(LPCTSTR pszFaceName)
 {
-    CHARFORMAT cf;
+	CHARFORMAT2 cf;
     cf.cbSize = sizeof (CHARFORMAT);
     cf.dwMask = CFM_FACE;
     ::lstrcpy (cf.szFaceName, pszFaceName);
-    //SetCharFormat (cf);
+    SetCharFormat (cf);
 }
 
 void CMyWordView::ChangeFontSize(int nSize)
 {
-    CHARFORMAT cf;
+	CHARFORMAT2 cf;
     cf.cbSize = sizeof (CHARFORMAT);
     cf.dwMask = CFM_SIZE;
     cf.yHeight = nSize;
-    //SetCharFormat (cf);
+    SetCharFormat (cf);
 }
 
 void CMyWordView::GetFontInfo(LPTSTR pszFaceName, int& nSize)
 {
-    CHARFORMAT cf = GetCharFormatSelection ();
+	CHARFORMAT2 cf = GetCharFormatSelection();
     ::lstrcpy (pszFaceName, cf.dwMask & CFM_FACE ? cf.szFaceName : _T (""));
     nSize = cf.dwMask & CFM_SIZE ? cf.yHeight : -1; 
 }
