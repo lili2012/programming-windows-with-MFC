@@ -116,8 +116,10 @@ UINT CHexDoc::GetBytes(UINT nIndex, UINT nCount, PVOID pBuffer)
     UINT nLength = nCount;
     if ((nIndex + nCount) > m_nDocLength)
         nLength = m_nDocLength - nIndex;
-
-    ::CopyMemory (pBuffer, m_pFileData + nIndex, nLength);
+	for (UINT i = 0; i < nLength; i++){
+		((TCHAR*)pBuffer)[i] = m_pFileData[nIndex + i];
+	}
+    //::CopyMemory (pBuffer, m_pFileData + nIndex, nLength);
     return nLength;
 }
 
